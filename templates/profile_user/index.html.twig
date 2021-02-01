@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{app.user.firstname}} {{app.user.lastname}} {% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        {% for message in app.flashes('message') %}
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="row">
+            <div id="profil-block" class="col-6 offset-3 col-md-4 offset-md-4  col-xl-2 offset-xl-5">
+                <img src="img/photo_profil1.png" alt="Voir mon profil" class="img-fluid">
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-center col-12">
+                <h2>{{ app.user.firstname }} {{ app.user.lastname }}</h2>
+                <p class="my-0">{{ app.user.city }}</p>
+                <p class="my-0">Promotion : {{ app.user.promotion }}</p>
+                <a href="#" ><img src="img/Tracé 50.png" alt="mail"> {{ app.user.email }}</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-center col-12">
+                <article class="card-body post shadow p-3 mb-1 bg-white mt-4">
+                    <p>{{ app.user.bio }}</p>
+                </article>
+                <div class="row message">
+                    <div class="col-6 offset-3">
+                        <p class="card-text"><small class="text-muted">Dernière modification {{ app.user.dateUpdate|date('d/m/Y H:i') }}</small></p>
+                        <a href="{{ path('app_profileuser_edit') }}" class="btn btn-primary btn-block mt-4">Modifier mon profil</a>
+                        <a href="{{ path('app_profileuser_editpass') }}" class="btn btn-secondary btn-block mt-4">Modifier mon mot de passe</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-8">
+                {% if app.user.actual == true %}
+                    <article class="card-body post shadow p-3 mb-1 bg-white mt-4">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2><img src="img/Icon material-work.png" alt="expérience"> Expérience actuelle</h2>
+                                <p>{{ app.user.companyname }}</p>
+                            </div>
+                        </div>
+                    </article>
+                {% endif %}
+                <article class="card-body post shadow p-3 mb-1 bg-white mt-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2><img src="img/Icon material-work.png" alt="expérience"> Expérience précédente</h2>
+                            <p>{{ app.user.experiences }}</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="col-12 col-md-4">
+                <article class="mt-4">
+                    <div class="row">
+                        <div class="col-12 ">
+                            <a href="#" ><img src="img/Icon awesome-linkedin.png" alt="linkedin">  Mon Linkedin</a>
+                            <hr>
+                        </div>
+                        <div class="col-12 ">
+                            <a href="#" ><img src="img/Icon awesome-pinterest.png" alt="Pinterest">  Mon pinterest</a>
+                            <hr >
+                        </div>
+                        <div class="col-12  ">
+                            <a href="#" ><img src="img/Icon material-import-contacts.png" alt="Site web">  Mon site web</a>
+                            <hr>
+                        </div>
+                        <div class="col-12">
+                            <a href="#" ><img src="img/Twitter.png" alt="Twitter">  Mon Twitter</a>
+                            <hr>
+                        </div>
+                        <div class="col-12">
+                            <a href="#" ><img src="img/Facebook.png" alt="Facebook">  Mon Facebook</a>
+                            <hr>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+{% endblock %}
